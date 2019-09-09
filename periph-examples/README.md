@@ -1,6 +1,6 @@
 # periph-examples
 
-ここは、このリポジトリのライブラリにしない、[periph](https://periph.io) ライブラリを単独で利用するサンプルです。
+ここは、このリポジトリのライブラリ依存にしない、[periph](https://periph.io) ライブラリを単独で利用するサンプルです。
 
 * [gpioBlink1 LED点滅 (bcm283x 直接アクセス)](gpioBlink1/main.go)
 * [gpioBlink2 LED点滅](gpioBlink2/main.go)
