@@ -66,6 +66,7 @@ func (t *BME280) Sense() error {
 	}
 
 	t.pressure, err = strconv.ParseFloat(strings.TrimRight(e.Pressure.String(), "kPa"), 64)
+	t.pressure = t.pressure * 10
 	if err != nil {
 		return err
 	}
