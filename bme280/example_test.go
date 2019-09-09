@@ -40,7 +40,7 @@ func bme280Run() string {
 	// 結果
 	thi := bm.THI()
 
-	ret := "[BME280]"
+	ret := "[BME280]\n"
 	ret = ret + fmt.Sprintf("  気温: 摂氏 %2.2f 度\n", bm.Temperature())
 	ret = ret + fmt.Sprintf("  湿度: %3.2f パーセント\n", bm.Humidity())
 	ret = ret + fmt.Sprintf("  気圧: %4.4f ヘクトパスカル (%2.4f 気圧)\n", bm.Pressure(), bm.Atm())
