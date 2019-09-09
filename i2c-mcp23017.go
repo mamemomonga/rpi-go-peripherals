@@ -2,10 +2,10 @@ package main
 
 import (
 	"log"
-	"time"
 	"periph.io/x/periph/conn/i2c"
 	"periph.io/x/periph/conn/i2c/i2creg"
 	"periph.io/x/periph/host"
+	"time"
 )
 
 // MCP23017はポートマルチプレクサである
@@ -14,7 +14,7 @@ import (
 
 func i2cMCP23017() {
 	// 初期化
-	if _,err := host.Init(); err != nil {
+	if _, err := host.Init(); err != nil {
 		log.Fatal(err)
 	}
 
@@ -35,34 +35,33 @@ func i2cMCP23017() {
 	// ここではデフォルトの ICON.BANK=0 とする
 
 	// 書込 IODIRAをすべて出力
-	if _,err := d.Write([]byte{0x00,0x00}); err != nil {
+	if _, err := d.Write([]byte{0x00, 0x00}); err != nil {
 		log.Fatal(err)
 	}
 
 	// 書込 OLATAをすべてHIGHにする
-	if _,err := d.Write([]byte{0x14,0xFF}); err != nil {
+	if _, err := d.Write([]byte{0x14, 0xFF}); err != nil {
 		log.Fatal(err)
 	}
 
 	// 1秒寝る
-	time.Sleep( time.Second )
+	time.Sleep(time.Second)
 
 	// 書込 OLATAをすべてLOWにする
-	if _,err := d.Write([]byte{0x14,0x00}); err != nil {
+	if _, err := d.Write([]byte{0x14, 0x00}); err != nil {
 		log.Fatal(err)
 	}
 
 	// 書込 IODIRBをすべて入力
-	if _,err := d.Write([]byte{0x01,0xFF}); err != nil {
+	if _, err := d.Write([]byte{0x01, 0xFF}); err != nil {
 		log.Fatal(err)
 	}
 
 	// 読書 GPIOBの値を読む
-	read := make([]byte,1)
-	if err := d.Tx([]byte{0x13},read); err != nil {
+	read := make([]byte, 1)
+	if err := d.Tx([]byte{0x13}, read); err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("GPIOB: 0x%02x",read[0])
+	log.Printf("GPIOB: 0x%02x", read[0])
 
 }
-
