@@ -25,6 +25,7 @@ func bme280Run() string {
 	defer b.Close()
 
 	// 開始
+	// SDOはGNDに接続している
 	bm, err := bme280.New(b, bme280.AddrLow)
 	if err != nil {
 		log.Fatal(err)
