@@ -19,11 +19,7 @@
 
 # サンプルコード
 
-[example_test.go](example_test.go)
-
-[testingのExample](https://golang.org/pkg/testing/#hdr-Examples)は標準出力を以下のOutput: の後と較するためエラー出力に結果を出している
-
-実行
+[example\_test.go](example_test.go)
 
 	go test -v -count=1 .
 

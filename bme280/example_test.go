@@ -1,7 +1,5 @@
 package bme280_test
 
-
-
 import (
 	"os"
 	"fmt"
@@ -11,7 +9,7 @@ import (
 	"periph.io/x/periph/host"
 )
 
-func Example() {
+func bme280Run() string {
 
 	// 初期化
 	if _, err := host.Init(); err != nil {
@@ -40,10 +38,24 @@ func Example() {
 
 	// 結果
 	thi := bm.THI()
-	fmt.Fprintf(os.Stderr,"  気温: 摂氏 %2.2f 度\n", bm.Temperature())
-	fmt.Fprintf(os.Stderr,"  湿度: %3.2f パーセント\n", bm.Humidity())
-	fmt.Fprintf(os.Stderr,"  気圧: %4.4f ヘクトパスカル (%2.4f 気圧)\n", bm.Pressure(), bm.Atm())
-	fmt.Fprintf(os.Stderr,"  不快指数: %2.2f %s(%s)\n", thi.Value, thi.FeelJa, thi.FeelEn)
+
+	ret := "[BME280]"
+	ret = ret + fmt.Sprintf("  気温: 摂氏 %2.2f 度\n", bm.Temperature())
+	ret = ret + fmt.Sprintf("  湿度: %3.2f パーセント\n", bm.Humidity())
+	ret = ret + fmt.Sprintf("  気圧: %4.4f ヘクトパスカル (%2.4f 気圧)\n", bm.Pressure(), bm.Atm())
+	ret = ret + fmt.Sprintf("  不快指数: %2.2f %s(%s)\n", thi.Value, thi.FeelJa, thi.FeelEn)
+
+	return ret
+}
+
+func Example() {
+
+	// testingのExample機能は標準出力を
+	// 以下の Output: の後と較するためエラー出力に結果を出している
+	// https://golang.org/pkg/testing/#hdr-Examples
+
+	fmt.Fprintf(os.Stderr, "%s",bme280Run())
 
 	// Output: 
 }
+
