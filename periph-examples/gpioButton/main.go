@@ -1,3 +1,8 @@
+// gpioButton ボタン反応 エッジ待機
+//
+// GPIOはプルアップされている
+// ボタンをGNDとの間に挟む
+//
 package main
 
 import (
@@ -8,11 +13,12 @@ import (
 	"time"
 )
 
-// GPIOはプルアップされている
-// ボタンをGNDとの間に挟む
+func main() {
 
-func gpioButton() {
-	host.Init()
+	// 初期化
+	if _, err := host.Init(); err != nil {
+		log.Fatal(err)
+	}
 
 	// https://godoc.org/periph.io/x/periph/host/bcm283x
 	// https://godoc.org/periph.io/x/periph/conn/gpio

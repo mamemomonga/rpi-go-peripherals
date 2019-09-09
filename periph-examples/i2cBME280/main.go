@@ -1,21 +1,5 @@
-package main
-
-import (
-	"fmt"
-	"log"
-	"strconv"
-	"strings"
-	"time"
-
-	//	"periph.io/x/periph/conn/i2c"
-	"periph.io/x/periph/conn/i2c/i2creg"
-	"periph.io/x/periph/host"
-
-	"periph.io/x/periph/conn/physic"
-	"periph.io/x/periph/devices/bmxx80"
-)
-
-// BME280 温湿度・気圧センサ
+// ic2BMC280 BME280 温湿度・気圧センサ
+// 
 // AE-BME280を使用した http://akizukidenshi.com/catalog/g/gK-09421/
 // J3 のみブリッジすると I2C が有効になる(CSB=HIGH)
 // プルアップは使用しない
@@ -25,8 +9,24 @@ import (
 // SDI -> SDA
 // SDO -> アドレス設定: LOWで0x76(デフォルト) / HIGHで0x77 ここではデフォルトなのでGND
 // SCK -> SDL
+//
+package main
 
-func i2cBME280() {
+import (
+	"fmt"
+	"log"
+	"strconv"
+	"strings"
+	"time"
+
+	"periph.io/x/periph/conn/i2c/i2creg"
+	"periph.io/x/periph/host"
+
+	"periph.io/x/periph/conn/physic"
+	"periph.io/x/periph/devices/bmxx80"
+)
+
+func main() {
 	// 初期化
 	if _, err := host.Init(); err != nil {
 		log.Fatal(err)
@@ -89,3 +89,4 @@ func i2cBME280() {
 		<-t.C
 	}
 }
+

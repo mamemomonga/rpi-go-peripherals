@@ -1,3 +1,8 @@
+// ic2MCP23017 i2cの基本サンプル (MCP23017ポートマルチプレクサ)
+// 
+// 配線とi2c* コマンドでの動作確認はこちら
+// https://gist.github.com/mamemomonga/bb915ea66904605598a9331cdbb4ac18
+//
 package main
 
 import (
@@ -8,11 +13,7 @@ import (
 	"time"
 )
 
-// MCP23017はポートマルチプレクサである
-// 配線とi2c* コマンドでの動作確認はこちら
-// https://gist.github.com/mamemomonga/bb915ea66904605598a9331cdbb4ac18
-
-func i2cMCP23017() {
+func main() {
 	// 初期化
 	if _, err := host.Init(); err != nil {
 		log.Fatal(err)

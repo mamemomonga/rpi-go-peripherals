@@ -1,3 +1,7 @@
+// gpioBlink1 LED点滅 (bcm283x 直接アクセス)
+//
+// 配線:発光ダイオードをGNDとGPIO26の間に1KΩの抵抗を介して接続する
+//
 package main
 
 import (
@@ -8,9 +12,7 @@ import (
 	"time"
 )
 
-// 発光ダイオードをGNDとGPIO26の間に1KΩの抵抗を介して接続
-
-func gpioBlink1() {
+func main() {
 
 	// 初期化
 	if _, err := host.Init(); err != nil {
@@ -19,6 +21,7 @@ func gpioBlink1() {
 
 	t := time.NewTicker(100 * time.Millisecond)
 
+	log.Println("running")
 	for l := gpio.Low; ; l = !l {
 		// 低レベルのbcm283xを直接呼び出す
 		// gpioregをつかったほうがいろいろと便利

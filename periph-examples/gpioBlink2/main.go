@@ -1,3 +1,7 @@
+// gpioBlink1 LED点滅
+//
+// 配線:発光ダイオードをGNDとGPIO26の間に1KΩの抵抗を介して接続する
+//
 package main
 
 import (
@@ -10,7 +14,7 @@ import (
 
 // 発光ダイオードをGNDとGPIO26の間に1KΩの抵抗を介して接続
 
-func gpioBlink2() {
+func main() {
 
 	// 初期化
 	if _, err := host.Init(); err != nil {
@@ -28,6 +32,8 @@ func gpioBlink2() {
 
 	// 点滅
 	t := time.NewTicker(100 * time.Millisecond)
+
+	log.Println("running")
 	for l := gpio.Low; ; l = !l {
 		pin.Out(l)
 		<-t.C
