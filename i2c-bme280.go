@@ -44,14 +44,14 @@ func i2cBME280() {
 	if err != nil {
 		log.Fatalf("failed to initialize bme280: %v", err)
 	}
-	e := physic.Env{}
-	if err := d.Sense(&e); err != nil {
-		log.Fatal(err)
-	}
-
 	t := time.NewTicker(30 * time.Second)
 
 	for {
+		e := physic.Env{}
+		if err := d.Sense(&e); err != nil {
+			log.Fatal(err)
+		}
+
 		log.Printf("%8s %9s %10s\n", e.Temperature, e.Humidity, e.Pressure)
 
 		// 数値に再変換
