@@ -1,6 +1,6 @@
 # Raspberry Pi + periph
 
-Goで利用できるベリフェラルIOライブラリ、periphのサンプルです
+Goで利用できるベリフェラルIOライブラリ、[periph](https://periph.io)のサンプルです
 
 * [GPIO: LEDチカチカ(bcm283x直接)](./gpio-blink1.go)
 * [GPIO: LEDチカチカ](./gpio-blink2.go)
