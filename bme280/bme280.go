@@ -32,6 +32,7 @@ type BME280 struct {
 
 type THIT struct {
 	Value  float64 // 不快指数
+	Number int     // 番号
 	FeelJa string  // 日本語
 	FeelEn string  // 英語
 }
@@ -101,34 +102,42 @@ func (t *BME280) THI() THIT {
 	thi.Value = 0.81*t.temperature + 0.01*t.humidity*(0.99*t.temperature-14.3) + 46.3
 	switch {
 	case thi.Value <= 55:
+		thi.Number = 1
 		thi.FeelJa = "寒い"
 		thi.FeelEn = "cold"
 
 	case thi.Value > 55 && thi.Value <= 60:
+		thi.Number = 2
 		thi.FeelJa = "肌寒い"
 		thi.FeelEn = "chilly"
 
 	case thi.Value > 60 && thi.Value <= 65:
+		thi.Number = 3
 		thi.FeelJa = "何も感じない"
 		thi.FeelEn = "no feel anything"
 
 	case thi.Value > 65 && thi.Value <= 70:
+		thi.Number = 4
 		thi.FeelJa = "快適"
 		thi.FeelEn = "comfortable"
 
 	case thi.Value > 70 && thi.Value <= 75:
+		thi.Number = 5
 		thi.FeelJa = "暑くない"
 		thi.FeelEn = "not hot"
 
 	case thi.Value > 75 && thi.Value <= 80:
+		thi.Number = 6
 		thi.FeelJa = "やや暑い"
 		thi.FeelEn = "slightly hot"
 
 	case thi.Value > 80 && thi.Value <= 85:
+		thi.Number = 7
 		thi.FeelJa = "暑くて汗が出る"
 		thi.FeelEn = "Hot and sweaty"
 
 	case thi.Value > 85:
+		thi.Number = 8
 		thi.FeelJa = "暑くてたまらない"
 		thi.FeelEn = "hot and irresistible"
 	}
