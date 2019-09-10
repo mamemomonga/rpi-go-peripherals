@@ -118,10 +118,6 @@ func Example() {
 	// ポートBの割り込みを有効にする
 	mx.B.InitInterrupt()
 
-	// ポートBの状態を取得する
-	// これでピンの「前の値」が設定される
-	mx.B.Fetch()
-
 	// MCP23017のINTB と Raspberry PiのGPIO13 を接続する
 	// GPIO13を割り込み入力にする
 	intpin := gpioreg.ByName("GPIO13")

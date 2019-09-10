@@ -202,6 +202,10 @@ func (t *PortT) InitInterrupt() *PortT {
 	// 前の状態と比較する
 	t.p.Write(t.addr.intcon, 0x00)
 
+	// ポートの状態を取得する
+	// これでピンの「前の値」が設定される
+	t.Fetch()
+
 	return t
 }
 
